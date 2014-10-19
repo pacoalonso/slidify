@@ -1,5 +1,5 @@
 ---
-title       : Calibrating the Philip's infiltration model
+title       : An app to analyze regression models.
 subtitle    : 
 author      : Paco Alonso
 job         : Coursera student
@@ -12,77 +12,55 @@ knit        : slidify::knit2slides
 
 --- .class #id
 
-## Disc infiltrometer
+## Purpose
 
-<img src="www/PondedDisc.jpg" width="250px" />
+### This app allows the user to check several different regression models using the Prestige data on the cars library.
 
+1. Linear model
+2. Polynomial
+3. Generalized Linear Model
+4. Generalized Additive Model
+5. MultiAdaptative Regression Splines
+6. Regression Random Forest
+7. K-Nearest Neighbors
+8. Support Vector Machines
 
---- .class #id
-
-## Disc infiltrometer result
-
-```{r echo=FALSE}
-t=1:30
-i=c(6,5.5,5,4.3,3.9,3.5,3.1,3.2,3.2,3.1,2.9,3,2.9,2.7,2.7,2.6,2.5,2.5,
-2.7,2.6,2.6,2.6,2.6,2.6,2.6,2.5,2.5,2.5,2.5,2.4)
-plot(t,i,xlab="Time(min)",ylab="Infiltration rate (mm/min)");
-```
-
---- .class #id
-
-## Philip's infiltration model
-
-```{r echo=FALSE}
-t=1:30
-i=c(6,5.5,5,4.3,3.9,3.5,3.1,3.2,3.2,3.1,2.9,3,2.9,2.7,2.7,2.6,2.5,2.5,
-2.7,2.6,2.6,2.6,2.6,2.6,2.6,2.5,2.5,2.5,2.5,2.4)
-plot(t,i,xlab="Time(min)",ylab="Infiltration rate (mm/min)");
-```
-$i(t)=\frac{1}{2 \cdot S \cdot \sqrt{t}} + K$
+### Selecting some of the models, a new widget will be open to choose the value of a parameter of the model.
 
 --- .class #id
 
-## Linearizing
+## A snapshot 
 
-$i(t)=\frac{1}{2 \cdot S \cdot \sqrt{t}} + K$
+<img src="www/figure.jpg" width="800px" />
 
-$i(t)=\frac{1}{2 \cdot S} \cdot \frac{1}{\sqrt{t}} + K$
+--- .class #id
 
-Transformation:
+## Some details
 
-* $A=\frac{1}{2 \cdot S}$     
-* $B=K$  
-* $X=\frac{1}{\sqrt{t}}$   
-* $Y=i(t)$
+Selecting some of the models, a new widget will be open to choose the value of a parameter of the model.
 
-Results in:
+It has 3 output tabs:
 
-$Y=A \cdot X + B$
+1. Graphics (graphical results)
+2. Summary of results (numerical)
+3. Insructions (how to use the app)
 
---- .class #id .codefont
+## Not included; however, ...
+
+The app does not allow to do learning curves (may be in the next version :-). However they can be computed using the outpus of the app.
+
+For instance, using the polynomial model, we can take the RMSE in training and testing for several different degrees and plot the corresponding training and testing error (next slide)
+
+--- .class #id
 
 
-## Solving
-
-```{r fig.height=5, fig.width=5}
-t=1:30
-i=c(6,5.5,5,4.3,3.9,3.5,3.1,3.2,3.2,3.1,2.9,3,2.9,2.7,2.7,2.6,2.5,2.5,
-2.7,2.6,2.6,2.6,2.6,2.6,2.6,2.5,2.5,2.5,2.5,2.4)
-model=lm(i~{1/sqrt(t)})
-S=1/(2*model$coefficients[2]);K=model$coefficients[1]
-plot(t,i,xlab="Time(min)",ylab="Infiltration rate (mm/min)");lines(t,1/(2*S*sqrt(t))+K,col="red")
+```{r fig.height=6, fig.width=7}
+training=c(10.48,10.46,10.37,10.38,10.24,10.1,10.03,10.03,10.02)
+testing=c(11.88,11.95,12.25,12.24,12.28,12.61,12.08,12.08,14.73)
+plot(deg,training,type="l",ylim=c(min(c(training,testing)),max(c(training,testing))),
+xlab="Degree of the polynomial",ylab="RMSE")
+lines(2:10,testing,col="red")
+legend(2,14.5,legend=c("Training RMSE","Testing RMSE"),fill=c("black","red"))
 ```
-
-
---- &radio
-## Question 1
-
-
-Que es que
-
-1. 1
-2. _2_
-3. 3
-4. 4
 
 

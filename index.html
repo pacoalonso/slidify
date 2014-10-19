@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Calibrating the Philip's infiltration model</title>
+  <title>An app to analyze regression models.</title>
   <meta charset="utf-8">
-  <meta name="description" content="Calibrating the Philip's infiltration model">
+  <meta name="description" content="An app to analyze regression models.">
   <meta name="author" content="Paco Alonso">
   <meta name="generator" content="slidify" />
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -16,7 +16,6 @@
   <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="libraries/widgets/bootstrap/css/bootstrap.css"></link>
 <link rel=stylesheet href="libraries/widgets/quiz/css/demo.css"></link>
 <link rel=stylesheet href="libraries/widgets/interactive/css/aceeditor.css"></link>
-<link rel=stylesheet href="./assets/css/ribbons.css"></link>
 
   
   <!-- Grab CDN jQuery, fall back to local if offline -->
@@ -35,7 +34,7 @@
     <!-- LOGO SLIDE -->
         <slide class="title-slide segue nobackground">
   <hgroup class="auto-fadein">
-    <h1>Calibrating the Philip's infiltration model</h1>
+    <h1>An app to analyze regression models.</h1>
     <h2></h2>
     <p>Paco Alonso<br/>Coursera student</p>
   </hgroup>
@@ -46,105 +45,76 @@
     <!-- SLIDES -->
     <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>Disc infiltrometer</h2>
+    <h2>Purpose</h2>
   </hgroup>
   <article data-timings="">
-    <p><img src="www/PondedDisc.jpg" width="250px" /></p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2>Disc infiltrometer result</h2>
-  </hgroup>
-  <article data-timings="">
-    <p><img src="assets/fig/unnamed-chunk-1.png" alt="plot of chunk unnamed-chunk-1"> </p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2>Philip&#39;s infiltration model</h2>
-  </hgroup>
-  <article data-timings="">
-    <p><img src="assets/fig/unnamed-chunk-2.png" alt="plot of chunk unnamed-chunk-2"> 
-\(i(t)=\frac{1}{2 \cdot S \cdot \sqrt{t}} + K\)</p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class" id="id" style="background:;">
-  <hgroup>
-    <h2>Linearizing</h2>
-  </hgroup>
-  <article data-timings="">
-    <p>\(i(t)=\frac{1}{2 \cdot S \cdot \sqrt{t}} + K\)</p>
-
-<p>\(i(t)=\frac{1}{2 \cdot S} \cdot \frac{1}{\sqrt{t}} + K\)</p>
-
-<p>Transformation:</p>
-
-<ul>
-<li>\(A=\frac{1}{2 \cdot S}\)<br></li>
-<li>\(B=K\)<br></li>
-<li>\(X=\frac{1}{\sqrt{t}}\)<br></li>
-<li>\(Y=i(t)\)</li>
-</ul>
-
-<p>Results in:</p>
-
-<p>\(Y=A \cdot X + B\)</p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="class codefont" id="id" style="background:;">
-  <hgroup>
-    <h2>Solving</h2>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">t=1:30
-i=c(6,5.5,5,4.3,3.9,3.5,3.1,3.2,3.2,3.1,2.9,3,2.9,2.7,2.7,2.6,2.5,2.5,
-2.7,2.6,2.6,2.6,2.6,2.6,2.6,2.5,2.5,2.5,2.5,2.4)
-model=lm(i~{1/sqrt(t)})
-S=1/(2*model$coefficients[2]);K=model$coefficients[1]
-plot(t,i,xlab=&quot;Time(min)&quot;,ylab=&quot;Infiltration rate (mm/min)&quot;);lines(t,1/(2*S*sqrt(t))+K,col=&quot;red&quot;)
-</code></pre>
-
-<p><img src="assets/fig/unnamed-chunk-3.png" alt="plot of chunk unnamed-chunk-3"> </p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-6" style="background:;">
-  <hgroup>
-    <h2>Question 1</h2>
-  </hgroup>
-  <article data-timings="">
-    
-<div class="quiz quiz-single well ">
-  <p>Que es que</p>
+    <h3>This app allows the user to check several different regression models using the Prestige data on the cars library.</h3>
 
 <ol>
-<li>1</li>
-<li><em>2</em></li>
-<li>3</li>
-<li>4</li>
+<li>Linear model</li>
+<li>Polynomial</li>
+<li>Generalized Linear Model</li>
+<li>Generalized Additive Model</li>
+<li>MultiAdaptative Regression Splines</li>
+<li>Regression Random Forest</li>
+<li>K-Nearest Neighbors</li>
+<li>Support Vector Machines</li>
 </ol>
 
-  <button class="quiz-submit btn btn-primary">Submit</button>
-  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
-  <button class="quiz-show-answer btn btn-success">Show Answer</button>
-  <button class="quiz-clear btn btn-danger">Clear</button>
-  
-  </div>
+<h3>Selecting some of the models, a new widget will be open to choose the value of a parameter of the model.</h3>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>A snapshot</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="www/figure.jpg" width="800px" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Some details</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Selecting some of the models, a new widget will be open to choose the value of a parameter of the model.</p>
+
+<p>It has 3 output tabs:</p>
+
+<ol>
+<li>Graphics (graphical results)</li>
+<li>Summary of results (numerical)</li>
+<li>Insructions (how to use the app)</li>
+</ol>
+
+<h2>Not included; however, ...</h2>
+
+<p>The app does not allow to do learning curves (may be in the next version :-). However they can be computed using the outpus of the app.</p>
+
+<p>For instance, using the polynomial model, we can take the RMSE in training and testing for several different degrees and plot the corresponding training and testing error (next slide)</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <article data-timings="">
+    <pre><code class="r">training=c(10.48,10.46,10.37,10.38,10.24,10.1,10.03,10.03,10.02)
+testing=c(11.88,11.95,12.25,12.24,12.28,12.61,12.08,12.08,14.73)
+plot(deg,training,type=&quot;l&quot;,ylim=c(min(c(training,testing)),max(c(training,testing))),
+xlab=&quot;Degree of the polynomial&quot;,ylab=&quot;RMSE&quot;)
+lines(2:10,testing,col=&quot;red&quot;)
+legend(2,14.5,legend=c(&quot;Training RMSE&quot;,&quot;Testing RMSE&quot;),fill=c(&quot;black&quot;,&quot;red&quot;))
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-1.png" alt="plot of chunk unnamed-chunk-1"> </p>
+
   </article>
   <!-- Presenter Notes -->
 </slide>
@@ -155,38 +125,26 @@ plot(t,i,xlab=&quot;Time(min)&quot;,ylab=&quot;Infiltration rate (mm/min)&quot;)
     <ul>
       <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=1 title='Disc infiltrometer'>
+        data-slide=1 title='Purpose'>
          1
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=2 title='Disc infiltrometer result'>
+        data-slide=2 title='A snapshot'>
          2
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=3 title='Philip&#39;s infiltration model'>
+        data-slide=3 title='Some details'>
          3
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=4 title='Linearizing'>
+        data-slide=4 title=''>
          4
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=5 title='Solving'>
-         5
-      </a>
-    </li>
-    <li>
-      <a href="#" target="_self" rel='tooltip' 
-        data-slide=6 title='Question 1'>
-         6
       </a>
     </li>
   </ul>
