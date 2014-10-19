@@ -54,8 +54,7 @@ For instance, using the polynomial model, we can take the RMSE in training and t
 --- .class #id
 
 
-
-```r
+```{r fig.height=6, fig.width=7}
 training=c(10.48,10.46,10.37,10.38,10.24,10.1,10.03,10.03,10.02)
 testing=c(11.88,11.95,12.25,12.24,12.28,12.61,12.08,12.08,14.73)
 plot(deg,training,type="l",ylim=c(min(c(training,testing)),max(c(training,testing))),
@@ -63,7 +62,5 @@ xlab="Degree of the polynomial",ylab="RMSE")
 lines(2:10,testing,col="red")
 legend(2,14.5,legend=c("Training RMSE","Testing RMSE"),fill=c("black","red"))
 ```
-
-![plot of chunk unnamed-chunk-1](assets/fig/unnamed-chunk-1.png) 
 
 
