@@ -1,4 +1,4 @@
 slidify
 =======
 
-Slidify prectice for Coursera Developing Data Products Course
+Slidify practice for Coursera Developing Data Products Course
